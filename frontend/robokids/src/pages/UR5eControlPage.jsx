@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Button, TextField, Snackbar, Alert, Typography } from "@mui/material";
 
 export default function RobotController() {
   const [position, setPosition] = useState({ x: "", y: "", z: "", rx: "", ry: "", rz: "" });
@@ -43,7 +42,7 @@ export default function RobotController() {
 
   const sendScript = async () => {
     const formData = new FormData();
-    
+
     if (selectedFile) {
       formData.append("file", selectedFile);
     } else if (scriptText.trim()) {
@@ -72,50 +71,49 @@ export default function RobotController() {
   };
 
   return (
-    <div style={{ padding: "20px", maxWidth: "600px", margin: "auto" }}>
-      <Typography variant="h4">UR5e Robot Control</Typography>
+    <div className="p-8 max-w-xl mx-auto">
+      <h2 className="text-2xl font-bold mb-4">UR5e Robot Control</h2>
 
-      {/* Movement Controls */}
-      <Typography variant="h6">Move Robot by Coordinates</Typography>
-      {["x", "y", "z", "rx", "ry", "rz"].map((axis) => (
-        <TextField
-          key={axis}
-          label={axis.toUpperCase()}
-          name={axis}
-          type="number"
-          value={position[axis]}
-          onChange={handlePositionChange}
-          style={{ margin: "5px", width: "120px" }}
-        />
-      ))}
+      <h3 className="text-xl font-semibold mb-2">Move Robot by Coordinates</h3>
+      <div className="grid grid-cols-3 gap-2 mb-4">
+        {["x", "y", "z", "rx", "ry", "rz"].map((axis) => (
+          <input
+            key={axis}
+            type="number"
+            name={axis}
+            placeholder={axis.toUpperCase()}
+            value={position[axis]}
+            onChange={handlePositionChange}
+            className="p-2 border rounded-md w-full"
+          />
+        ))}
+      </div>
 
-      <Button variant="contained" onClick={moveRobot} style={{ marginTop: "10px" }}>
+      <button onClick={moveRobot} className="bg-blue-500 text-white py-2 px-4 rounded-md mb-4">
         Move Robot
-      </Button>
+      </button>
 
-      {/* Script Upload and Text Input */}
-      <Typography variant="h6" style={{ marginTop: "20px" }}>Send URScript</Typography>
-      <input type="file" onChange={handleFileChange} style={{ marginBottom: "10px" }} />
+      <h3 className="text-xl font-semibold mb-2">Send URScript</h3>
+      <input type="file" onChange={handleFileChange} className="mb-4" />
 
-      <TextField
-        label="Or enter script text"
-        multiline
+      <textarea
+        placeholder="Or enter script text"
         rows={4}
-        fullWidth
         value={scriptText}
         onChange={handleTextChange}
+        className="p-2 border rounded-md w-full mb-4"
       />
 
-      <Button variant="contained" onClick={sendScript} style={{ marginTop: "10px" }}>
+      <button onClick={sendScript} className="bg-green-500 text-white py-2 px-4 rounded-md mb-4">
         Send Script
-      </Button>
+      </button>
 
-      {/* Snackbar Notification */}
-      <Snackbar open={open} autoHideDuration={3000} onClose={() => setOpen(false)}>
-        <Alert onClose={() => setOpen(false)} severity="success">
+      {open && (
+        <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white p-4 rounded-md">
           {message}
-        </Alert>
-      </Snackbar>
+          <button onClick={() => setOpen(false)} className="ml-4 text-red-500">Close</button>
+        </div>
+      )}
     </div>
   );
 }

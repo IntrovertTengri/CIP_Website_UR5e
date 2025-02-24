@@ -1,6 +1,5 @@
-import { Button } from "@mui/material";
 import { useState } from "react";
-import BookingModal from "../components/BookingModal";
+import BookingModal from "../../robokids/src/components/BookingModal";
 import { useNavigate } from "react-router-dom";
 
 export default function UR5ePage() {
@@ -8,17 +7,17 @@ export default function UR5ePage() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ padding: "20px", maxWidth: "800px", margin: "auto", textAlign: "center" }}>
-      <h1>UR5e - Lightweight, Versatile Robot</h1>
-      <img src="/images/ur5e.jpg" alt="UR5e Robot" style={{ width: "100%", borderRadius: "10px" }} />
+    <div className="p-8 max-w-4xl mx-auto text-center">
+      <h1 className="text-3xl font-bold mb-6">UR5e - Lightweight, Versatile Robot</h1>
+      <img src="/images/ur5e.jpg" alt="UR5e Robot" className="w-full rounded-lg mb-6" />
 
-      <p>
+      <p className="mb-6">
         The <strong>UR5e</strong> is a flexible, lightweight <strong>collaborative robot (cobot)</strong> designed for various industrial applications.
         It has a <strong>payload of 5 kg</strong> and an <strong>operating radius of 850 mm</strong>, making it ideal for tasks requiring precision.
       </p>
 
-      <h3>Key Features:</h3>
-      <ul style={{ listStyle: "none", padding: 0 }}>
+      <h3 className="text-2xl font-semibold mb-4">Key Features:</h3>
+      <ul className="list-none space-y-2 mb-6">
         <li>✅ <strong>Payload Capacity</strong>: 5 kg</li>
         <li>✅ <strong>Reach</strong>: 850 mm</li>
         <li>✅ <strong>Repeatability</strong>: ±0.03 mm</li>
@@ -26,18 +25,22 @@ export default function UR5ePage() {
         <li>✅ <strong>Applications</strong>: Assembly, packaging, pick-and-place, machine tending</li>
       </ul>
 
-      {/* Buttons */}
-      <div style={{ marginTop: "20px", display: "flex", justifyContent: "center", gap: "15px" }}>
-        <Button variant="contained" color="primary" onClick={() => navigate("/robots/ur5e/control")}>
+      <div className="flex justify-center gap-4 mt-6">
+        <button
+          className="bg-blue-500 text-white py-2 px-6 rounded-md"
+          onClick={() => navigate("/robots/ur5e/control")}
+        >
           Control UR5e
-        </Button>
+        </button>
 
-        <Button variant="contained" color="secondary" onClick={() => setOpenBooking(true)}>
+        <button
+          className="bg-green-500 text-white py-2 px-6 rounded-md"
+          onClick={() => setOpenBooking(true)}
+        >
           Book UR5e
-        </Button>
+        </button>
       </div>
 
-      {/* Booking Modal (Reusable for any robot) */}
       <BookingModal open={openBooking} onClose={() => setOpenBooking(false)} robotName="UR5e" />
     </div>
   );
