@@ -1,5 +1,5 @@
 import { useState } from "react";
-import BookingModal from "../../robokids/src/components/BookingModal";
+import BookingModal from "../components/BookingModal";
 import { useNavigate } from "react-router-dom";
 
 export default function UR5ePage() {
@@ -7,7 +7,7 @@ export default function UR5ePage() {
   const navigate = useNavigate();
 
   return (
-    <div className="p-8 max-w-4xl mx-auto text-center">
+    <div className="p-8 max-w-4xl mx-auto text-center bg-white min-h-screen">
       <h1 className="text-3xl font-bold mb-6">UR5e - Lightweight, Versatile Robot</h1>
       <img src="/images/ur5e.jpg" alt="UR5e Robot" className="w-full rounded-lg mb-6" />
 

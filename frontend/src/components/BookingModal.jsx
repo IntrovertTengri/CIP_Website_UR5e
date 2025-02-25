@@ -15,13 +15,21 @@ export default function BookingModal({ open, onClose, robotName }) {
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-        <h2 className="text-2xl font-bold mb-4">Book {robotName}</h2>
+    <div 
+      className="fixed inset-0 bg-opacity-30 flex items-center justify-center z-50"
+      onClick={onClose}
+    >
+      <div 
+        className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-auto"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2 className="text-2xl font-bold mb-4 text-center">Book {robotName}</h2>
         
         {/* Select Date */}
         <h3 className="text-lg font-semibold mb-2">Select Date</h3>
-        <Calendar value={selectedDate} onChange={setSelectedDate} locale="en-US" />
+        <div className="max-w-xs mx-auto">
+          <Calendar value={selectedDate} onChange={setSelectedDate} locale="en-US" />
+        </div>
 
         {/* Select Time */}
         <h3 className="text-lg font-semibold mt-4 mb-2">Select Time</h3>
