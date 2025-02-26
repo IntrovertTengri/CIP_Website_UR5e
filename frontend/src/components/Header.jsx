@@ -5,7 +5,7 @@ export default function Header() {
   const navigate = useNavigate(); // React Router navigation hook
 
   return (
-    <header className="w-full flex items-center bg-background gap-4 mt-3 px-16">
+    <header className="fixed top-0 left-0 w-full h-16 flex items-center bg-background gap-4 px-16">
       {/* RoboKids Branding */}
       <div className="flex items-center gap-1 cursor-pointer" onClick={() => navigate("/")}>
         <img src={RoboKidsLogo} alt="RoboKids Logo" />
@@ -29,10 +29,15 @@ export default function Header() {
       </ul>
 
       <div className="flex items-center ml-auto gap-4">
-        <button>
+        <button 
+          onClick={() => navigate("/login")} 
+        >
           <p className="text-primary-text font-medium text-base font-outfit">Log in</p>
         </button>
-        <button className="border border-accent rounded-lg px-5 py-2 bg-accent">
+        <button 
+          onClick={() => navigate("/signup")}
+          className="border border-accent rounded-lg px-5 py-2 bg-accent"
+        >
           <p className="text-background text-base font-medium font-outfit">Sign up</p>
         </button>
       </div>

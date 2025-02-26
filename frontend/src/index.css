@@ -8,3 +8,7 @@
     --color-background: #FAFCFF;
     --color-background-gradient: #0C44A129;
 }
+
+#html {
+    background-color: var(--color-background);
+}

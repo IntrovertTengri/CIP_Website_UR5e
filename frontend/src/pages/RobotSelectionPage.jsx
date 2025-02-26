@@ -9,7 +9,7 @@ export default function RobotSelectionPage() {
   const navigate = useNavigate();
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="pt-16">
       <h1>Select a Robot</h1>
       <Grid container spacing={3}>
         {robots.map((robot) => (

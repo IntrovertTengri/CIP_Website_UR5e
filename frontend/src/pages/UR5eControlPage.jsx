@@ -71,7 +71,7 @@ export default function RobotController() {
   };
 
   return (
-    <div className="p-8 max-w-xl mx-auto">
+    <div className="pt-16 p-8 max-w-xl mx-auto">
       <h2 className="text-2xl font-bold mb-4">UR5e Robot Control</h2>
 
       <h3 className="text-xl font-semibold mb-2">Move Robot by Coordinates</h3>
