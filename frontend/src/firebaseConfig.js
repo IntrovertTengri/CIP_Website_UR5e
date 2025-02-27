@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth"; 
+import { getAuth, onAuthStateChanged } from "firebase/auth"; 
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FB_API_KEY,
@@ -16,4 +16,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-export { auth };
+export { auth, onAuthStateChanged };

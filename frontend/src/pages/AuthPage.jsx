@@ -41,7 +41,10 @@ export default function AuthPage({ isSignUp = false }) {
     }
 
     return (
-        <main className="pt-16 w-screen h-screen flex flex-col items-center justify-center bg-linear-to-b from-background from-15% to-45% to-background-gradient">
+        <main 
+            className="pt-16 w-screen flex flex-1 flex-col items-center justify-center
+                bg-linear-to-b from-1% to-50% to-background-gradientbg-linear-to-b from-background to-background-gradient"
+        >
             <div className="w-full max-w-md p-8 bg-background rounded-2xl shadow-lg">
                 <h1 className="text-4xl font-outfit font-bold text-accent mb-6 text-center">
                     RoboKids

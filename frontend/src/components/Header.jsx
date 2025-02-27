@@ -1,11 +1,24 @@
 import { useNavigate } from "react-router-dom";
 import RoboKidsLogo from "../assets/robokids-logo.svg";
+import { auth,onAuthStateChanged } from "../firebaseConfig";
+import { useEffect } from "react";
 
 export default function Header() {
-  const navigate = useNavigate(); // React Router navigation hook
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User is signed in:", user);
+      } else {
+        console.log("User is signed out");
+      }
+    });
+  },
+  []);
 
   return (
-    <header className="fixed top-0 left-0 w-full h-16 flex items-center bg-background gap-4 px-16">
+    <header className="h-16 flex items-center bg-background gap-4 px-16">
       {/* RoboKids Branding */}
       <div className="flex items-center gap-1 cursor-pointer" onClick={() => navigate("/")}>
         <img src={RoboKidsLogo} alt="RoboKids Logo" />
@@ -29,9 +42,7 @@ export default function Header() {
       </ul>
 
       <div className="flex items-center ml-auto gap-4">
-        <button 
-          onClick={() => navigate("/login")} 
-        >
+        <button onClick={() => navigate("/login")}>
           <p className="text-primary-text font-medium text-base font-outfit">Log in</p>
         </button>
         <button 
