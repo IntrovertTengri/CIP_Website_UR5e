@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import RobotSelectionPage from "./pages/RobotSelectionPage";
 import UR5ePage from "./pages/UR5ePage";
 import UR5eControlPage from "./pages/UR5eControlPage";
+import LoginPage from "./pages/LoginPage";
 
 export default function App() {
   return (
@@ -39,7 +40,7 @@ export default function App() {
             </main>
           }
         />
-        
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/robots" element={<RobotSelectionPage />} />
         <Route path="/robots/ur5e" element={<UR5ePage />} />
         <Route path="/robots/ur5e/control" element={<UR5eControlPage />} />
