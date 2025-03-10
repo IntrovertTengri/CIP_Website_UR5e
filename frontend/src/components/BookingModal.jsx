@@ -5,18 +5,49 @@ import "react-calendar/dist/Calendar.css";
 export default function BookingModal({ open, onClose, robotName }) {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [selectedTime, setSelectedTime] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const timeSlots = ["10:00 - 12:00", "12:00 - 14:00", "14:00 - 16:00", "16:00 - 18:00"];
 
-  const handleBooking = () => {
-    alert(`Booked ${robotName} for ${selectedDate.toDateString()} at ${selectedTime}`);
-    onClose();
+  const handleBooking = async () => {
+    if (!selectedTime) return;
+    const userId = localStorage.getItem("user_id"); // Assuming user is logged in
+  
+    if (!userId) {
+      alert("Please log in to book.");
+      return;
+    }
+  
+    try {
+      const response = await fetch("http://127.0.0.1:8000/book-robot/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          user_id: userId,
+          robot_name: robotName,
+          date: selectedDate.toISOString().split("T")[0],
+          time_slot: selectedTime,
+        }),
+      });
+  
+      const data = await response.json();
+      
+      if (response.ok) {
+        alert("Booking confirmed!");
+        onClose();
+      } else {
+        alert(data.detail || "Failed to book.");
+      }
+    } catch (error) {
+      alert("Error connecting to server.");
+    }
   };
 
   if (!open) return null;
 
   return (
     <div 
-      className="fixed inset-0 bg-opacity-30 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-opacity-60 flex items-center justify-center z-50"
       onClick={onClose}
     >
       <div 
@@ -45,13 +76,16 @@ export default function BookingModal({ open, onClose, robotName }) {
           ))}
         </div>
 
+        {/* Error Message */}
+        {errorMessage && <p className="text-red-500 mt-2 text-center">{errorMessage}</p>}
+
         {/* Book Button */}
         <button
           onClick={handleBooking}
-          disabled={!selectedTime}
+          disabled={!selectedTime || loading}
           className="bg-green-500 text-white py-2 px-4 rounded-md w-full mt-4 disabled:bg-gray-400"
         >
-          Book
+          {loading ? "Booking..." : "Book"}
         </button>
 
         <button

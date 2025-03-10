@@ -1,0 +1,13 @@
+2025-02-27 13:04:53,357 - Sent coordinates: X=2, Y=2, Z=2, Rx=2, Ry=2, Rz=2
+2025-02-27 13:15:27,452 - Sent coordinates: X=2, Y=2, Z=2, Rx=2, Ry=2, Rz=2
+2025-03-05 15:36:14,166 - Error creating booking: (builtins.TypeError) SQLite Date type only accepts Python date objects as input.
+[SQL: INSERT INTO bookings (user_id, robot_name, date, time_slot) VALUES (?, ?, ?, ?)]
+[parameters: [{'time_slot': '12:00 - 14:00', 'date': '2025-03-20', 'robot_name': 'UR5e', 'user_id': 1}]]
+2025-03-05 15:36:21,711 - Error creating booking: (builtins.TypeError) SQLite Date type only accepts Python date objects as input.
+[SQL: INSERT INTO bookings (user_id, robot_name, date, time_slot) VALUES (?, ?, ?, ?)]
+[parameters: [{'time_slot': '12:00 - 14:00', 'date': '2025-03-12', 'robot_name': 'UR5e', 'user_id': 1}]]
+2025-03-05 15:44:01,650 - ❌ Error sending email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials a640c23a62f3a-abf422954c4sm872696466b.168 - gsmtp')
+2025-03-05 15:45:48,942 - ❌ Error sending email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials a640c23a62f3a-abf70b47411sm589389166b.79 - gsmtp')
+2025-03-05 15:46:48,900 - ❌ Error sending email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials a640c23a62f3a-ac1ea18e32csm357298066b.137 - gsmtp')
+2025-03-10 14:47:35,815 - ❌ Error sending email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials a640c23a62f3a-ac284f76a22sm349796666b.149 - gsmtp')
+2025-03-10 14:50:39,919 - ❌ Error sending email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials a640c23a62f3a-ac299a025c7sm235832666b.51 - gsmtp')
