@@ -11,3 +11,4 @@
 2025-03-05 15:46:48,900 - ❌ Error sending email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials a640c23a62f3a-ac1ea18e32csm357298066b.137 - gsmtp')
 2025-03-10 14:47:35,815 - ❌ Error sending email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials a640c23a62f3a-ac284f76a22sm349796666b.149 - gsmtp')
 2025-03-10 14:50:39,919 - ❌ Error sending email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials a640c23a62f3a-ac299a025c7sm235832666b.51 - gsmtp')
+2025-03-10 15:20:07,095 - ❌ Error sending email: (535, b'5.7.8 Username and Password not accepted. For more information, go to\n5.7.8  https://support.google.com/mail/?p=BadCredentials 4fb4d7f45d1cf-5e5c76913bbsm6872653a12.78 - gsmtp')
