@@ -3,9 +3,23 @@ import struct
 import logging
 from fastapi import HTTPException
 from config import ROBOT_IP, ROBOT_PORT, REALTIME_PORT, ENABLE_LOGGING, LOG_FILE
+from rtde_control import RTDEControlInterface
+from rtde_receive import RTDEReceiveInterface   
 
 if ENABLE_LOGGING:
     logging.basicConfig(filename=LOG_FILE, level=logging.INFO, format="%(asctime)s - %(message)s")
+
+def get_robot_joints():
+    rtde_r = RTDEReceiveInterface(ROBOT_IP)
+    joint_positions = rtde_r.getActualQ()
+    return {
+        "J1": joint_positions[0],
+        "J2": joint_positions[1],
+        "J3": joint_positions[2],
+        "J4": joint_positions[3],
+        "J5": joint_positions[4],
+        "J6": joint_positions[5]
+    }
 
 def get_robot_position():
     """Retrieves the Cartesian position of the UR5e robot's TCP."""
@@ -24,9 +38,14 @@ def move_robot(position: dict):
         required_keys = {"J1", "J2", "J3", "J4", "J5", "J6"}
         if not required_keys.issubset(position.keys()):
             raise HTTPException(status_code=400, detail="Missing required position values")
-
-        J1, J2, J3, J4, J5, J6 = position["x"], position["y"], position["z"], position["rx"], position["ry"], position["rz"]
-        script = f"movel(p[{J1},{J2},{J3},{J4},{J5},{J6}], a=0.2, v=0.2)\n"
+        J1, J2, J3, J4, J5, J6 = position["J1"], position["J2"], position["J3"], position["J4"], position["J5"], position["J6"]
+        script = f"""
+        def main():
+            movej([{J1},{J2},{J3},{J4},{J5},{J6}], a=0.2, v=0.2)
+        end
+        main()
+        """
+        print(script)
 
         with socket.create_connection((ROBOT_IP, ROBOT_PORT), timeout=5) as s:
             s.sendall(script.encode("utf-8"))
@@ -42,17 +61,15 @@ def move_robot_joints(joint_positions: dict):
     """Sends a URScript command to move the UR5e joints to specific angles."""
     try:
         required_keys = {"J1", "J2", "J3", "J4", "J5", "J6"}
+        print(joint_positions)
+        print(joint_positions['J1'])
         if not required_keys.issubset(joint_positions.keys()):
             raise HTTPException(status_code=400, detail="Missing required joint values")
-
         # Create URScript for joint movement
         script = f"""
-        def move_joints():
             movej([{joint_positions['J1']}, {joint_positions['J2']}, {joint_positions['J3']}, 
                   {joint_positions['J4']}, {joint_positions['J5']}, {joint_positions['J6']}], 
                   a=0.2, v=0.2)
-        end
-        move_joints()
         """
 
         with socket.create_connection((ROBOT_IP, ROBOT_PORT), timeout=5) as s:
@@ -77,3 +94,4 @@ def send_script_to_robot(script: str):
         return "URScript sent successfully."
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to send script: {str(e)}")
+    
