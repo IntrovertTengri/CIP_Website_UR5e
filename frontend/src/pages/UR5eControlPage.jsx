@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 
 export default function RobotController() {
   const [controlMode, setControlMode] = useState("panel");
-  const [joints, setJoints] = useState({ J1: 0, J2: 0, J3: 0, J4: 0, J5: 0, J6: 0 });
+  const [joints, setJoints] = useState({ J1: -1.57, J2: -1.57, J3: 1.57, J4: -1.57, J5: 1.57, J6: 0 });
   const [position, setPosition] = useState({ J1: "", J2: "", J3: "", J4: "", J5: "", J6: "" });
   const [buttonState, setButtonState] = useState({
     J1Plus: false, J1Minus: false,
@@ -152,6 +152,7 @@ export default function RobotController() {
 
   const sendScript = async () => {
     const formData = new FormData();
+  
     if (selectedFile) {
       formData.append("file", selectedFile);
     } else if (scriptText.trim()) {
@@ -160,18 +161,20 @@ export default function RobotController() {
       setMessage("Please upload a file or enter script text.");
       return;
     }
-
+  
     try {
-      const response = await fetch("http://127.0.0.1:8000/files/upload/", {
+      const response = await fetch("http://127.0.0.1:8000/files/upload", { 
         method: "POST",
         body: formData,
       });
-      await response.json();
-      setMessage("Script sent successfully!");
+  
+      const data = await response.json();
+      setMessage(data.message);
     } catch (error) {
       setMessage("Failed to send script!");
     }
   };
+  
 
   const radToDeg = (rad) => {
     return Math.round(rad * (180 / Math.PI) * 100) / 100;

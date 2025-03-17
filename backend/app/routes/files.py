@@ -3,7 +3,7 @@ from app.services.robot_control import send_script_to_robot
 
 router = APIRouter(prefix="/files", tags=["Files"])
 
-@router.post("/upload")
+@router.post("/upload") 
 async def upload_script(file: UploadFile = File(None), script: str = Form(None)):
     """Receives a file OR raw text script and sends it to the UR5e robot."""
     try:
