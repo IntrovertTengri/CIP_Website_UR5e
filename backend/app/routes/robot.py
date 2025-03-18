@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from app.services.robot_control import move_robot, move_robot_joints, get_robot_joints
+from app.services.robot_control import move_robot, get_robot_joints
 
 router = APIRouter(prefix="/robot", tags=["Robot"])
 
