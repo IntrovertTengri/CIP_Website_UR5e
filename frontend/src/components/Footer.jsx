@@ -5,12 +5,12 @@ import InstagramIcon from "../assets/instagram-icon.svg";
 
 export default function Footer() {
 	return (
-		<footer className="flex bg-background gap-16 px-16 border-t-2 border-gray-300 py-5">
+		<footer className="w-screen grid grid-cols-[30%_70%] bg-background px-16 border-t-2 border-gray-300 py-5">
 			{/* RoboKids Branding */}
 			<div className="flex flex-col justify-between gap-3">
 				<div className="flex items-center gap-1">
 					<img src={RoboKidsLogo} alt="RoboKids Logo" />
-					<h1 className="font-outfit font-bold text-3xl text-accent">
+					<h1 className="font-outfit font-bold text-4xl text-accent">
 						RoboKids
 					</h1>
 				</div>
@@ -28,7 +28,7 @@ export default function Footer() {
 				</ul>
 			</div>
 
-			<div className="flex flex-1/12 justify-around">
+			<div className="flex justify-around">
 				<ul className="flex flex-col gap-1">
 					<li>
 						<h2 className="font-outfit font-semibold">Company</h2>

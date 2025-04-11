@@ -7,4 +7,15 @@
     --color-primary-text: #1B1F28;
     --color-background: #FAFCFF;
     --color-background-gradient: #0C44A129;
+    --color-background-card-primary: #25467E17;
+    --color-background-card-secondary: #FFFFFF;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
