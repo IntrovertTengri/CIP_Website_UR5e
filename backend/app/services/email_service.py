@@ -24,10 +24,12 @@ def send_booking_email(email: str, robot_name: str, date: str, time_slot: str):
         msg["Subject"] = subject
         msg.attach(MIMEText(body, "plain"))
 
-        with smtplib.SMTP("smtp.gmail.com", 587) as server:
-            server.starttls()
+        with smtplib.SMTP_SSL("smtp.gmail.com", 587) as server:
+            # server.starttls()
             server.login(SMTP_USER, SMTP_PASSWORD)
-            server.sendmail(SMTP_USER, email, msg.as_string())
+            server.send_message(msg)
+            # server.sendmail(SMTP_USER, email, msg.as_string())
+        
 
         logging.debug(f"📧 Email sent to {email}")
 
