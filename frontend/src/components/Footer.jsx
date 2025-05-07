@@ -5,7 +5,7 @@ import InstagramIcon from "../assets/instagram-icon.svg";
 
 export default function Footer() {
 	return (
-		<footer className="w-screen grid grid-cols-[30%_70%] bg-background px-16 border-t-2 border-gray-300 py-5">
+		<footer className="w-screen grid grid-cols-[30%_70%] bg-background px-16 py-5">
 			{/* RoboKids Branding */}
 			<div className="flex flex-col justify-between gap-3">
 				<div className="flex items-center gap-1">
