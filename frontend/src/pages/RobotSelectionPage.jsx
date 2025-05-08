@@ -14,7 +14,7 @@ import UR5e from "../assets/ur5e.png"
 import Spot from "../assets/spot.png"
 
 function RobotsSection() {
-  const [isBookingOpen, setIsBookingOpen] = useState(true)
+  const [isBookingOpen, setIsBookingOpen] = useState(false)
   const [selectedRobot, setSelectedRobot] = useState(null)
 
   const { user } = useAuth()
