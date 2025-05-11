@@ -15,7 +15,7 @@
     "@monaco-editor/react": "^4.7.0",
     "@mui/material": "^6.4.5",
     "@tailwindcss/vite": "^4.0.8",
-    "firebase": "^11.4.0",
+    "firebase": "^11.6.0",
     "react": "^19.0.0",
     "react-calendar": "^5.1.0",
     "react-dom": "^19.0.0",
