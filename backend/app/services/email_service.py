@@ -24,7 +24,7 @@ def send_booking_email(email: str, robot_name: str, date: str, time_slot: str):
         msg["Subject"] = subject
         msg.set_content(body)
 
-        with smtplib.SMTP_SSL("smtp.gmail.com", 587) as server:
+        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
             # server.starttls()
             server.login(SMTP_USER, SMTP_PASSWORD)
             server.send_message(msg)
